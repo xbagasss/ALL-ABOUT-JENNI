@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ALL ABOUT JENNI</title>
+  <style>
+    :root{
+      --accent:#0b74de;
+      --muted:#51606a;
+      --bg-top:#cfe9ff;
+      --bg-bottom:#eaf6ff;
+      --card:#ffffffcc;
+      --border:rgba(11,116,222,0.15);
+      --text:#08314a;
+      --success:#0a8a3f;
+    }
+
+    html,body{height:100%}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;margin:0;color:var(--text);background:linear-gradient(180deg,var(--bg-top),var(--bg-bottom));transition:all .3s ease;overflow-x:hidden;}
+
+    .cloud{
+      position:fixed;
+      background:rgba(255,255,255,0.8);
+      border-radius:50%;
+      filter:blur(15px);
+      animation: moveClouds linear infinite;
+      z-index:0;
+    }
+    .cloud.small{width:80px;height:40px;top:15%;left:-100px;animation-duration:60s;}
+    .cloud.medium{width:150px;height:70px;top:35%;left:-200px;animation-duration:90s;}
+    .cloud.large{width:250px;height:120px;top:60%;left:-300px;animation-duration:120s;}
+
+    @keyframes moveClouds{
+      from{transform:translateX(0)}
+      to{transform:translateX(120vw)}
+    }
+
+    header{position:relative;z-index:2;background:transparent;padding:22px 16px}
+    .container{max-width:980px;margin:0 auto;padding:0 18px}
+    h1{margin:0;color:var(--accent);font-weight:700}
+
+    nav{margin-top:12px}
+    nav ul{list-style:none;padding:0;display:flex;gap:12px;margin:0;align-items:center}
+    nav a{color:var(--text);text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px}
+    nav a:hover{background:rgba(255,255,255,0.6)}
+    nav button{background:rgba(255,255,255,0.7);border:1px solid var(--border);padding:6px 10px;border-radius:8px;cursor:pointer}
+
+    main{position:relative;z-index:2;padding:28px 0}
+    .card{background:var(--card);backdrop-filter:blur(6px);border-radius:12px;padding:18px;margin-bottom:18px;border:1px solid var(--border);box-shadow:0 6px 20px rgba(8,49,74,0.06)}
+
+    article{margin-bottom:18px}
+    figure{margin:0 0 12px 0}
+    img{max-width:100%;height:auto;border-radius:10px;display:block;filter:none;border:1px solid rgba(0,0,0,0.06)}
+    figcaption{font-size:0.95rem;color:var(--muted);margin-top:8px}
+
+    table{width:100%;border-collapse:collapse;margin-top:12px;background:transparent}
+    th,td{border-bottom:1px solid rgba(8,49,74,0.06);padding:12px;text-align:left}
+    th{background:transparent;color:var(--text)}
+    caption{caption-side:top;text-align:left;font-weight:700;margin-bottom:6px;color:var(--accent)}
+
+    .contact-card{border:1px solid var(--border);padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));}
+    .field{display:flex;flex-direction:column;margin-bottom:12px}
+    label{font-weight:700;margin-bottom:6px;color:var(--text)}
+    input[type="text"],input[type="email"],textarea{padding:10px;border:1px solid rgba(8,49,74,0.06);border-radius:8px;background:#fff;color:var(--text)}
+    textarea{min-height:120px;resize:vertical}
+    .actions{display:flex;gap:8px;align-items:center}
+    .btn{padding:8px 12px;border-radius:8px;border:none;background:var(--accent);color:#fff;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid rgba(8,49,74,0.06);color:var(--text)}
+    .note{font-size:0.9rem;color:var(--muted)}
+    .success{color:var(--success);font-weight:700;margin-top:8px}
+
+    footer{position:relative;z-index:2;border-top:0;padding:20px 0;color:var(--muted);font-size:0.95rem}
+
+    @media (max-width:720px){nav ul{flex-direction:column;gap:8px;align-items:flex-start}}
+
+    body.dark{
+      --accent:#ffd166;
+      --muted:#bfc8d6;
+      --bg-top:#07122b;
+      --bg-bottom:#081026;
+      --card:rgba(10,14,26,0.6);
+      --border:rgba(255,255,255,0.04);
+      --text:#e8f1ff;
+      --success:#7ed57e;
+    }
+    body.dark .cloud{background:rgba(255,255,255,0.2)}
+
+    .timeline{margin:20px 0;padding-left:22px;border-left:3px solid rgba(255,255,255,0.12)}
+    .timeline-event{margin-bottom:18px;position:relative;padding-left:12px}
+    .timeline-event::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--accent);position:absolute;left:-10px;top:6px;box-shadow:0 0 8px rgba(11,116,222,0.2)}
+    .timeline-event h4{margin:0 0 6px 0;color:var(--accent)}
+    .timeline-event p{margin:0;font-size:0.95rem;color:var(--text)}
+
+    /* Slideshow */
+    .gallery {position: relative; max-width: 100%; margin: auto; overflow: hidden; border-radius: 10px;}
+    .slides {display: flex; transition: transform 0.5s ease-in-out;}
+    .slides img {width: 100%; flex-shrink: 0;}
+    .prev, .next {position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 50%;}
+    .prev { left: 10px; }
+    .next { right: 10px; }
+  </style>
+  <script>
+    function toggleDarkMode(){
+      document.body.classList.toggle('dark');
+    }
+
+    function submitContactForm(e){
+      e.preventDefault();
+      const name = document.getElementById('nama').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('pesan').value.trim();
+      if(!name || !email || !msg){
+        alert('Mohon isi semua kolom yang wajib.');
+        return;
+      }
+      document.getElementById('contact-form').reset();
+      const notice = document.getElementById('contact-notice');
+      notice.textContent = 'Pesan berhasil dikirim. Terima kasih!';
+      notice.classList.add('success');
+      setTimeout(()=>{ notice.textContent=''; notice.classList.remove('success'); }, 5000);
+    }
+
+    let currentIndex = 0;
+    function showSlide(index){
+      const slides = document.querySelector('.slides');
+      const totalSlides = slides.children.length;
+      if(index >= totalSlides) currentIndex = 0;
+      else if(index < 0) currentIndex = totalSlides - 1;
+      else currentIndex = index;
+      slides.style.transform = `translateX(${-currentIndex * 100}%)`;
+    }
+    function nextSlide(){ showSlide(currentIndex + 1); }
+    function prevSlide(){ showSlide(currentIndex - 1); }
+    setInterval(()=>{ nextSlide(); }, 4000);
+  </script>
+</head>
+<body>
+  <!-- Clouds -->
+  <div class="cloud small"></div>
+  <div class="cloud medium"></div>
+  <div class="cloud large"></div>
+
+  <header>
+    <div class="container">
+      <h1>Jenni Nuraeni</h1>
+      <nav aria-label="Navigasi utama">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#profil">Profil</a></li>
+          <li><a href="#timeline">Timeline</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+          <li><button onclick="toggleDarkMode()">🌙/☀</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home">
+      <article class="card">
+        <h2>Tentang Jenni Nuraeni</h2>
+        <p>Jenni Nuraeni adalah seorang anak yang sangat ceria dan selalu memberi energi positif kepada orang-orang sekitarnya di lingkungan sekolah dan di luar sekolah selain itu jenni di ciptakan saat tuhan sedang bahagia kenapa tuh gitu bang, karena jenni sangat spesial karena dia cantik, pintar, rajin. Dia punya senyum yang manis with short hair.</p>
+        <p>Di website ini, kamu bisa menemukan galeri foto Jenni Nuraeni, informasi seputar Jenni Nuraeni, serta cara untuk lebih mengetahui Jenni Nuraeni.</p>
+      </article>
+
+      <section id="profil" class="card" aria-labelledby="profil-heading">
+        <h3 id="profil-heading">Profil Jenni</h3>
+        <ul>
+          <li><strong>Nama Lengkap:</strong> Jenni Nuraeni</li>
+          <li><strong>Tanggal Lahir:</strong> 14 Juni 2007</li>
+          <li><strong>Tempat Lahir:</strong> Bogor</li>
+          <li><strong>Hobi:</strong> Membaca, Menulis, Olahraga</li>
+          <li><strong>Fakta Unik:</strong> Dikenal sangat ceria dan selalu memberi energi positif.</li>
+        </ul>
+      </section>
+
+      <section id="timeline" class="card" aria-labelledby="timeline-heading">
+        <h3 id="timeline-heading">Timeline Sekolah Jenni</h3>
+        <div class="timeline">
+          <div class="timeline-event">
+            <h4>Sekolah Dasar</h4>
+            <p>SDN Karawang Wetan IV</p>
+          </div>
+          <div class="timeline-event">
+            <h4>Sekolah Menengah Pertama</h4>
+            <p>SMPN 2 Karawang Timur</p>
+          </div>
+          <div class="timeline-event">
+            <h4>Sekolah Menengah Atas</h4>
+            <p>SMKN 2 Karawang</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Galeri slideshow -->
+      <section class="card">
+        <h3>Galeri Jenni</h3>
+        <div class="gallery">
+          <div class="slides">
+            <img src="https://i.pinimg.com/736x/99/7c/42/997c424420f9d378ddbd4382fb1b5892.jpg" alt="Foto 1">
+            <img src="https://i.pinimg.com/474x/7a/03/49/7a03490f091d28c66737bd4c4fe3753d.jpg" alt="Foto 2">
+            <img src="https://i.pinimg.com/736x/c1/e1/4a/c1e14aeb60554e2d827140916d9cfbcf.jpg" alt="Foto 3">
+          </div>
+          <button class="prev" onclick="prevSlide()">❮</button>
+          <button class="next" onclick="nextSlide()">❯</button>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="tabel-heading">
+        <h3 id="tabel-heading">Makanan Favorit Jenni</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Makanan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Martabak Coklat Keju</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Katanya Sih Matcha</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Ayam Katanya Ayam Diapain aja suka</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="kontak" class="card" aria-labelledby="kontak-heading">
+        <h3 id="kontak-heading">Ingin Lebih Tahu?</h3>
+        <div class="contact-card">
+        <p class="note" style="margin-top:12px">Untuk informasi lebih lanjut, kamu bisa menghubungi langsung: <a href="nuraenijenni@gmail.com">nuraenijenni@gmail.com</a> atau melalui sosial media:</p>
+          <ul>
+            <li><a href="https://instagram.com/jenninrn/">Instagram</a></li>
+          </ul>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="
